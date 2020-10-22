@@ -12,107 +12,177 @@
 </head>
 
 <body>
-  <header>
-    <h3 class="title">habit tracker</h3>
-</header>
-<div id="condition"></div>
 
-    <h2>
-        <div class="current-show">
-            <p id="date">
-                <p class="big-text" id="date"></p>
-            </p>
-        </div>
-    </h2>
+<!--new stuff-->
+<h1 class="title">Stuff I need to do</h1>
+<!---->
+    <div class="all-tasks">
+      <h2 class="task-list-title">My lists</h2>
+      <ul class="task-list" data-lists></ul>
 
-    <div class="inputDiv">
-
-
-        <table class='table'>
-            <tr>
-                <th class='table-habit'>Habit </th>
-                
-                <td>Mon</td>
-                <td>Tue</td>
-                <td>Wed</td>
-                <td>Thu</td>
-                <td>Fri</td>
-                <td>Sat</td>
-                <td>Sun</td>
-            </tr>
-        </table>
-
-        <div class='items'>
-
-
-
-            <ul class='habit-list'></ul>
-
-            <div class='habits'>
-                <!--
-                  <table>
-                    <tr>
-                      <th>item</th>
-                      <td><input type="checkbox"></td>
-                      <td><input type="checkbox"></td>
-                      <td><input type="checkbox"></td>
-                      <td><input type="checkbox"></td>
-                      <td><input type="checkbox"></td>
-                      <td><input type="checkbox"></td>
-                      <td><input type="checkbox"></td>
-                    </tr>
-                  </table>
-                  <li></li>
-                  <button class='editBtn'>edit</button>
-                  <button class='removeBtn'>remove</button>
-        
--->
-
-            </div>
-        </div>
-
-        <form action="">
-        <div class='input'>
-            <input type="text" name='habit-input' class="habit-input" placeholder="habits.." maxlength="15">
-            
-            <button type='button' class="addBtn">add</button>
-            
-            
-             <!--
-            <select name="repeatednr" id="repeatednr">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>                   
-          </select>
--->
-
-
-          <input type="reset" value="Clear All" class='clear-all'>
-         
-          <!--counter-->
-          <div class="counter-box">
-       
-            <h1 class="counter">0</h1>
-            <div id="btns"></div>
-            <button type="button" class="btn" id="lowerCountBtn">- </button>
-            <button type="button" class="btn" id="addCountBtn">+ </button>
-        </div>
-         <!-- end counter-->
-
-          <progress value="0" max="100" id=p1>50%</progress>
-<input type=button value='Increse' onClick='incr();'>
-
-          <p>Pick Color: <input type="color" name="color" required></p>
-        </div>
-     
+      <form action="" data-new-list-form>
+        <input 
+          type="text"
+          class="new list"
+          data-new-list-input
+          placeholder="new list name"
+          aria-label="new list name"
+        />
+        <button class="btn create" aria-label="create new list">+</button>
+      </form>
     </div>
-    <div class='error hidden'>We both know you should be doing something right now. Please enter a task.</div>
 
-</form>
+    <div class="todo-list" data-list-display-container>
+      <div class="todo-header">
+        <h2 class="list-title" data-list-title>Week 1</h2>
+        <p class="task-count" data-list-count>3 tasks remaining</p>
+      </div>
+
+      <div class="todo-body">
+        <div class="tasks" data-tasks></div>
+
+        <div class="new-task-creator">
+            <form action="" data-new-task-form>
+
+              </form>
+
+              <header>
+                <h3 class="title">habit tracker</h3>
+            </header>
+            <div id="condition"></div>
+            
+                <h2>
+                    <div class="current-show">
+                        <p id="date">
+                            <p class="big-text" id="date"></p>
+                        </p>
+                    </div>
+                </h2>
+            
+            <!--
+                <div class="all-tasks">
+                    <h2 class="task-list-title">My lists</h2>
+                    <ul class="task-list" data-lists></ul>
+              
+                    <form action="" data-new-list-form>
+                      <input 
+                        type="text"
+                        class="new list"
+                        data-new-list-input
+                        placeholder="new list name"
+                        aria-label="new list name"
+                      />
+                      <button class="btn create" aria-label="create new list">+</button>
+                    </form>
+                  </div>
+            -->
+                <div class="inputDiv">
+            
+            
+                    <table class='table'>
+                        <tr>
+                            <th class='table-habit'>Habit </th>
+                            
+                            <td>Mon</td>
+                            <td>Tue</td>
+                            <td>Wed</td>
+                            <td>Thu</td>
+                            <td>Fri</td>
+                            <td>Sat</td>
+                            <td>Sun</td>
+                        </tr>
+                    </table>
+            
+                    <div class='items'>
+            
+            
+            
+                        <ul class='habit-list'></ul>
+            
+                        <div class='habits'>
+                            <!--
+                              <table>
+                                <tr>
+                                  <th>item</th>
+                                  <td><input type="checkbox"></td>
+                                  <td><input type="checkbox"></td>
+                                  <td><input type="checkbox"></td>
+                                  <td><input type="checkbox"></td>
+                                  <td><input type="checkbox"></td>
+                                  <td><input type="checkbox"></td>
+                                  <td><input type="checkbox"></td>
+                                </tr>
+                              </table>
+                              <li></li>
+                              <button class='editBtn'>edit</button>
+                              <button class='removeBtn'>remove</button>
+                    
+            -->
+            
+                        </div>
+                    </div>
+            
+                    <form action="">
+                    <div class='input'>
+                        <input type="text" name='habit-input' class="habit-input" placeholder="habits.." maxlength="15">
+                        
+                        <button type='button' class="addBtn">add</button>
+                        
+                        
+                         <!--
+                        <select name="repeatednr" id="repeatednr">
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>                   
+                      </select>
+            -->
+            
+            
+                      <input type="reset" value="Clear All" class='clear-all'>
+                     
+                      <!--counter-->
+                      <div class="counter-box">
+                   
+                        <h1 class="counter">0</h1>
+                        <div id="btns"></div>
+                        <button type="button" class="btn" id="lowerCountBtn">- </button>
+                        <button type="button" class="btn" id="addCountBtn">+ </button>
+                    </div>
+                     <!-- end counter-->
+            
+                      <progress value="0" max="100" id=p1>50%</progress>
+            <input type=button value='Increse' onClick='incr();'>
+            
+                      <p>Pick Color: <input type="color" name="color" required></p>
+                    </div>
+                 
+                </div>
+                <div class='error hidden'>We both know you should be doing something right now. Please enter a task.</div>
+            
+            </form>
+        </div>
+
+        <div class="delete-stuff">
+          <button class="btn delete" data-clear-complete-tasks-button>Clear completed tasks</button>
+          <button class="btn delete" data-delete-list-button>Delete list</button>
+        </div>
+      </div>
+    </div>
+
+   
+    </div>
+    <template id="task-template">
+      <div class="task">
+        <input type="checkbox" />
+        <label>
+          <span class="custom-checkbox"></span>
+        </label>
+      </div>
+    </template>
 </body>
 
 <script src='habit-tracker.js'></script>

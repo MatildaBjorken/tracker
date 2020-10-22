@@ -214,7 +214,7 @@ input::placeholder {
   }
 
   .c {
-      background-color: teal;
+      background-color: rgb(105, 228, 150);
       cursor: pointer;
    
   }
