@@ -15,11 +15,10 @@ html {
     
 }
 
+
 .removeBtn {
     pointer-events: none;
 }
-
-
 
 .title {
     display: flex;
@@ -30,12 +29,17 @@ html {
 }
 
 header,form {
-    min-height: 20vh;
+    min-height: 10vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+.fromWeeks {
+
+    justify-content: flex-start;
+    align-items: flex-start; 
+}
 
 
 .table {
@@ -49,6 +53,11 @@ header,form {
     width: 50%;
     border-collapse: collapse;
     
+    
+}
+#week {
+    color: rgb(71, 245, 184);
+    font-size: 1rem;
     
 }
 
@@ -69,7 +78,7 @@ header,form {
 
 
 .addBtn{
-    background-color: #8f8f8f;
+    background-color: #8f8f8f00;
     border: none;
     color: white;
     padding: .4em .6em;
@@ -77,13 +86,17 @@ header,form {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-   
+    border: .1em solid gray;
     font-size: 1rem;
     margin: 1em;
     cursor: pointer;
 }
+
+.addBtn:hover {
+    background-color: gray;
+}
 .clear-all{
-    background-color: #8f8f8f;
+    background-color: #8f8f8f00;
     border: none;
     color: white;
     padding: .4em .6em;
@@ -91,11 +104,14 @@ header,form {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-   
+    border: .1em solid gray;
     font-size: 1rem;
-    margin: 1em;
     cursor: pointer;
-  }
+}
+
+.clear-all:hover {
+    background-color: gray;
+}
 
 .input {
     margin-top: 3em;
@@ -108,20 +124,74 @@ header,form {
     display: inline-flex;
     justify-content: center;
     align-items: center;
+   
     
 }
-
+.habit-item{
+    max-width: 60px;
+    hyphens: auto;
+    word-wrap:break-word;  
+    align-items: center;
+    justify-content: center;
+    color: rgb(255, 255, 255);
+}
 .habit-input{
-
+  
+    hyphens: auto;
+    word-wrap:break-word;
+    align-items: center;
+    justify-content: center;
   width: 60%;
   border: 0;
-  border-bottom: .1em solid gray;
+  border-bottom: .2em solid gray;
   outline: 0;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   padding: .5em 0;
   background: transparent;
   color: rgb(255, 255, 255);
   
+}
+
+.weeks{
+
+  
+    width: 20%;
+   
+}
+
+.input-weeks{
+  
+    hyphens: auto;
+    word-wrap:break-word;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    border: 0;
+    border-bottom: .2em solid gray;
+    outline: 0;
+    font-size: 1.1rem;
+    padding: .5em 0;
+    background: transparent;
+    color: rgb(255, 255, 255);
+   
+}
+
+.inputweeks{
+  
+    hyphens: auto;
+    word-wrap:break-word;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    border: 0;
+    border-bottom: .2em solid gray;
+    outline: 0;
+    font-size: 1.1rem;
+    padding: .5em 0;
+    padding-right: 5em;
+    background: transparent;
+    color: rgb(255, 255, 255);
+   
 }
 
 :placeholder-shown{
@@ -130,7 +200,7 @@ header,form {
 }
 
 input::placeholder {
-    color: rgb(53, 53, 53);
+    color: rgb(50, 50, 50);
   }
 
 
@@ -160,7 +230,7 @@ input::placeholder {
     display: flex;
     justify-content: center;
     align-items: center;
-
+   
 }
 
 
@@ -168,13 +238,23 @@ input::placeholder {
 .habits {
     display: flex;
     align-items: center;
-
+    
     justify-content: space-between;
 }
 
 
 .hidden{
     display: none;
+}
+
+.error {
+    font-size: 0.8rem;
+    color: grey;
+}
+
+.check:hover{
+    scale: 1em;
+   
 }
 
 
@@ -184,6 +264,7 @@ input::placeholder {
     height: 2.5em;
     border-radius: 50%;
     border: none;
+ 
     
   
 }
@@ -192,11 +273,13 @@ input::placeholder {
     list-style: none;
   align-items: center;
   justify-content: center;
-  margin-right: 1em;
+ 
   
 }
 
-
+.counting {
+   margin-left: 3em;
+}
 
 #condition {
     width: 50%;
@@ -210,11 +293,14 @@ input::placeholder {
 
   .check {
       cursor: pointer;
-      background-color: rgb(183, 182, 182);
+      background-color: rgba(234, 234, 234, 0);
+      border: .2em solid gray;
   }
 
+
   .c {
-      background-color: rgb(105, 228, 150);
+      background-color:rgb(34, 206, 177);
+      border: .2em solid rgb(34, 206, 177);
       cursor: pointer;
    
   }
@@ -226,4 +312,49 @@ input::placeholder {
   }
 
 
+  .selected {
+      
+  }
 
+
+  .active-list:hover {
+      color: aqua;
+     
+  }
+
+
+
+.active-list {
+    font-weight: 900;
+  }
+
+  
+.list-title {
+    min-height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn {
+    background-color: #8f8f8f00;
+    border: none;
+    color: white;
+    padding: .4em .6em;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border: .1em solid gray;
+    font-size: 1rem;
+    margin: 1em;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    background-color: gray;
+  }
+
+  .row-yellow .selected {
+    
+}

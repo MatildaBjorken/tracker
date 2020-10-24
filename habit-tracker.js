@@ -1,6 +1,5 @@
 //main list
 
-let list = []
 
 
 // target from html
@@ -11,56 +10,121 @@ const errorEmpty = document.querySelector('.error')
 const newWeek = document.querySelector('.btn')
 const clearAll = document.querySelector('.clear-all')
 const condition = document.querySelector("#condition")
-
-//class eventName {
-//    constructor(event) {
-//        this.createDiv(event)
-//    }
-//}
+const weekSection = document.getElementById('btn');
 const changeBtn = document.querySelector('.items')
+let colorChoice = document.getElementById('pick-color').value
 
+
+
+//local storage
+document.addEventListener('DOMContentLoaded', getHabits)
 //event listeners
+
 addBtn.addEventListener('click', addHabit)
 habitList.addEventListener('click', deleteAction)
-changeBtn.addEventListener('click', colorChange)
+//changeBtn.addEventListener('click', colorChange)
 clearAll.addEventListener('click', removeAll)
 
 
 
+//remove all btn
+
+
+function removeAll() {
+  location.reload()
+  localStorage.clear()
+      /*const item = e.target
+      const removeBtn = document.querySelector('.items')
+      const habit = item.parentElement
+      removeAllHabits(habit)
+      removeBtn.innerHTML = '';
+      // Clear items on local storage array */
+}
+
+
+//hit enter insead of add btn
 document.addEventListener('keypress', function(enter) {
   if (enter.keyCode === 13 || enter.which === 13) {
     addHabit(event)
   };
 });
 
-
 //function for changing color of the habits
-
+/*
 function colorChange(x) {
  
-  
   const button = x.target
   
   if (button.classList[0]=== 'check') {
     condition.textContent = "nice work!"
     const color = button
     color.classList.toggle('c')
+    const habit = button.parentElement
+    saveButtons(button)
 
   } else {
     const color = button
     color.classList.remove('c')
   }
+ 
+}
+*/
+/*
+function colorChange(x) {
+
+  const button = x.target
+  if (button.classList[0] === 'check') {
+      condition.textContent = "nice work!"
+   
+      const color = button
+      color.classList.toggle('c') 
+      saveButtons(button)
+
+  } else {
+      const color = button
+      color.classList.remove('c')
+  }
+}
+*/
+
+document.getElementById("pick-color").onchange = function() {
+  backHEX = this.value;
+  colorChoice = backHEX;
+}
+
+document.addEventListener('click', function (event){
+  const element=event.target;
+  if (element.classList.contains('check')) {
+      element.style.backgroundColor = element.parentNode.id;
+      if (element.classList.contains('selected')) {
+          element.classList.remove('selected')
+          element.style.backgroundColor = colorChoice
+        } else {
+        element.classList.add('selected')
+        element.style.backgroundColor = element.parentNode.id;
+      }
+  }})
+
+
+const setBg = () => {
+  const randomColor = Math.floor(Math.random()*16777215).toString(16);
+  document.body.style.backgroundColor = "#" + randomColor;
+  setBg();
+}
+
+function createRandom() {
+  const hexParts = '0123456789ABCDEF'
+  let color = '#'
+  for (let i = 0; i<6; i ++) {
+    color += hexParts[Math.floor(Math.random()*16)]
+  }
+  return color
 }
 
 
-/*
-habitInput.addEventListener("keyup", addHabit) 
-  if (event.keyCode === 13) {
-   event.preventDefault();
-   alert('ehue')
-  }
-  
-*/
+
+
+//function for adding habits
 
 function addHabit(event){
     //prevent form from submitting
@@ -90,25 +154,40 @@ function addHabit(event){
         newHabit.classList.add('habit-item')
         habitDiv.appendChild(newHabit)
 
+
+         //ADD HABIT TO LOCAL STORAGE
+        saveLocalHabits(habitInput.value);
         //check 
 
         //edit
         //const editHabit = document.createElement('button');
-    	  //editHabit.classList.add('edit-btn')
+        //editHabit.classList.add('edit-btn')
         //editHabit.innerHTML = '<p class="editBtn">edit</p>'
         //habitDiv.appendChild(editHabit)
 
         //checkboxes adding using inner HTML
 
+        //creates the row of buttons
         const checkHabit = document.createElement('row')
         checkHabit.innerHTML = 
-        '<div class= "selected"><button class="check"></button><button class="check"></button><button class="check"></button><button class="check"></button><button class="check"></button><button class="check"></button><button class="check"></button></div>'
+        `
+      
+           
+        <div class="habitname ib"  style = color:${colorChoice}>
+        <div class="row row-yellow" id = ${colorChoice}>
+        <div class= "selected"><button id="1"class="check"></button><button id="2"class="check"></button><button id="3" class="check"></button><button id="4" class="check"></button><button class="check"></button><button class="check"></button><button class="check"></button></div>
+        </div></div>
+    
+     
+    `
+      
 
         checkHabit.classList.add('table-check')
         
+        
         habitDiv.appendChild(checkHabit)
 
-
+       
         //append to list
 
         habitList.appendChild(habitDiv)
@@ -119,6 +198,7 @@ function addHabit(event){
     //to clear the input after adding
     habitInput.value= ''
     condition.textContent = "there u go!"
+    
 }
 
 
@@ -128,106 +208,175 @@ function deleteAction(e) {
   const item = e.target
   if (item.classList[0]=== 'trash-btn'){
       const habit = item.parentElement
- 
+
+      
+      condition.textContent = "hope youre not cheating..!"
       habit.remove()
+      removeLocalHabits(habit);
   }
+
+
 }
 
-//remove all btn
+//set count
 
-function removeAll() {
-  alert ('remove')
+//counter in list
+
+
+//local storage
+function saveLocalHabits(habit) {
+  //CHECK IF I ALREADY HAVE THINGS IN THERE
+  let habits;
+  if (localStorage.getItem('habits') === null) {
+      habits = [];
+  } else {
+    //assuming that stuff exist, parse it back to an array
+      habits = JSON.parse(localStorage.getItem('habits'));
+  }
+
+  habits.push(habit);
+  //set it back into local Storage
+  localStorage.setItem('habits', JSON.stringify(habits));
 }
 
-       //set count
+function getHabits() {
+  //CHECK IF I ALREADY HAVE THINGS IN THERE
+  let habits;
+  if (localStorage.getItem('habits') === null) {
+      habits = [];
+  } else {
+      habits = JSON.parse(localStorage.getItem('habits'));
+  }
 
+//loop over them
+  habits.forEach(function(habit) {
+      //if the field is empty
+      if (habitInput.value === '') {
+          errorEmpty.classList.remove('hidden')
+          
+          // Remove error after 3 seconds
+          setTimeout(() => errorEmpty.remove(), 5000);
 
+      } else {
 
-
-//counter
-let counter = document.querySelector('.counter');
-const addCount = document.querySelector('#addCountBtn');
-const lowerCount = document.querySelector('#lowerCountBtn');
-
-
-let count = 0;
-
-
-addCount.addEventListener('click', incrementCounter);
-lowerCount.addEventListener('click', decrementCounter);
-
-function incrementCounter (){
-    count++;
-    counter.innerHTML =  count;
+      }
+      errorEmpty.classList.add('hidden')
     
+      //create a habit div
+
+      const habitDiv = document.createElement('div')
+      habitDiv.classList.add('habits')
+
+      //trash btn
+      const trashHabit = document.createElement('button')
+      trashHabit.innerHTML = '<p class="removeBtn">-</p>'
+      trashHabit.classList.add('trash-btn')
+      habitDiv.appendChild(trashHabit)
+
+      //create li
+      const newHabit = document.createElement('li')
+      newHabit.innerText = habit
+      newHabit.classList.add('habit-item')
+      habitDiv.appendChild(newHabit)
+
+      //checkboxes adding using inner HTML
+      const checkHabit = document.createElement('row')
+      checkHabit.innerHTML =
+      '<div class= "selected"><button id="1"class="check"></button><button id="2"class="check"></button><button id="3" class="check"></button><button id="4" class="check"></button><button class="check"></button><button class="check"></button><button class="check"></button></div>'
+
+      checkHabit.classList.add('table-check')
+      habitDiv.appendChild(checkHabit)
+
+      //append to list
+      habitList.appendChild(habitDiv)
+  });
 }
 
-function incrementCounter (){
-    count++;
-    counter.innerHTML =  count;
-    if(counter.innerHTML>'1'){
-        counter.style.color = 'white'
-    }
+
+function saveButtons(button) {
+  let buttons;
+  if (localStorage.getItem('c') === null) {
+      button = [];
     
-    counter.animate([{opacity:'0.2'},{opacity:'1.0'}], {duration: 1000, fill:'forwards'})
-}
-;
+  } else {
+    buttons= JSON.parse(localStorage.getItem('check'));
+  }
 
-function decrementCounter (){
-    count--;
-    counter.innerHTML =  count;
-    if(counter.innerHTML<'1'){
-        count++
-    }
-  
-    counter.animate([{opacity:'0.2'},{opacity:'1.0'}], {duration: 1000, fill:'forwards'})
+  localStorage.setItem('c', JSON.stringify(buttons));
+
+  alert(button.name)
+  if ((button.classList[0])=== 'c') {
+    alert('f')
+  }
+  //const habitIndex = (button.innerText)
+  //habits.splice(habits.indexOf(habitIndex) ,1);
+  //localStorage.setItem('check', JSON.stringify(buttons));
 }
+
+
+function removeLocalHabits(habit) {
+  let habits;
+  if (localStorage.getItem('habits') === null) {
+      habits = [];
+  } else {
+      habits = JSON.parse(localStorage.getItem('habits'));
+  }
+  const habitIndex = (habit.children[1].innerText)
+  habits.splice(habits.indexOf(habitIndex) ,1);
+  localStorage.setItem('habits', JSON.stringify(habits));
+
+}
+
+function removeAllHabits(habit) {
+  let habits;
+  if (localStorage.getItem('habits') === null) {
+      habits = [];
+  } else {
+      habits = JSON.parse(localStorage.getItem('habits'));
+  }
+  const habitIndex = (habit.children[0].innerText)
+  habits.splice(habits.indexOf(habitIndex).length);
+  localStorage.setItem('habits', JSON.stringify(habits));
+
+}
+
+
+//get week
+const weekElement = document.getElementById('week')
+
+
+function getWeekNumber(d) {
+
+  d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+
+  d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay()||7));
+  var yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
+  var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7);
+
+  return [d.getUTCFullYear(), weekNo];
+}
+
+var result = getWeekNumber(new Date());
+
+
+
+weekElement.innerHTML='week ' + result[1] + ' of ' + result[0]
+
+
+
 const listsContainer = document.querySelector('[data-lists]')
 const newListForm = document.querySelector('[data-new-list-form]')
 const newListInput = document.querySelector('[data-new-list-input]')
 const deleteListButton = document.querySelector('[data-delete-list-button]')
 const listDisplayContainer = document.querySelector('[data-list-display-container]')
-const listTitleElement = document.querySelector('[data-list-title]')
-const listCountElement = document.querySelector('[data-list-count]')
-const tasksContainer = document.querySelector('[data-tasks]')
-const taskTemplate = document.getElementById('task-template')
-const newTaskForm = document.querySelector('[data-new-task-form]')
-const newTaskInput = document.querySelector('[data-new-task-input]')
-const clearCompleteTasksButton = document.querySelector('[data-clear-complete-tasks-button]')
+const listTitle = document.querySelector('[data-list-title]')
+const habitContainer = document.querySelector('[data-tasks]')
 
 const LOCAL_STORAGE_LIST_KEY = 'task.lists'
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId'
-let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || []
-let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY)
+let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [] //store the list
+let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY) //get this info 
 
-listsContainer.addEventListener('click', e => {
-  if (e.target.tagName.toLowerCase() === 'li') {
-    selectedListId = e.target.dataset.listId
-    saveAndRender()
-  }
-})
-
-tasksContainer.addEventListener('click', e => {
-  if (e.target.tagName.toLowerCase() === 'input') {
-    const selectedList = lists.find(list => list.id === selectedListId)
-    const selectedTask = selectedList.tasks.find(task => task.id === e.target.id)
-    selectedTask.complete = e.target.checked
-    save()
-    renderTaskCount(selectedList)
-  }
-})
-
-clearCompleteTasksButton.addEventListener('click', e => {
-  const selectedList = lists.find(list => list.id === selectedListId)
-  selectedList.tasks = selectedList.tasks.filter(task => !task.complete)
-  saveAndRender()
-})
-
-deleteListButton.addEventListener('click', e => {
-  lists = lists.filter(list => list.id !== selectedListId)
-  selectedListId = null
-  saveAndRender()
-})
 
 newListForm.addEventListener('submit', e => {
   e.preventDefault()
@@ -239,89 +388,80 @@ newListForm.addEventListener('submit', e => {
   saveAndRender()
 })
 
-newTaskForm.addEventListener('submit', e => {
-  e.preventDefault()
-  const taskName = newTaskInput.value
-  if (taskName == null || taskName === '') return
-  const task = createTask(taskName)
-  newTaskInput.value = null
-  const selectedList = lists.find(list => list.id === selectedListId)
-  selectedList.tasks.push(task)
-  saveAndRender()
-})
-
 function createList(name) {
   return { id: Date.now().toString(), name: name, tasks: [] }
-}
-
-function createTask(name) {
-  return { id: Date.now().toString(), name: name, complete: false }
 }
 
 function saveAndRender() {
   save()
   render()
 }
-
 function save() {
   localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(lists))
   localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedListId)
 }
 
+
+listsContainer.addEventListener('click', e => {
+  if (e.target.tagName.toLowerCase() === 'li') {
+    selectedListId = e.target.dataset.listId
+    saveAndRender()
+  }
+})
+
+deleteListButton.addEventListener('click', e => {
+  const selectedList = lists.find(list => list.id === selectedListId)
+  selectedList.tasks = selectedList.tasks.filter(task => !task.complete)
+  saveAndRender()
+})
+
+deleteListButton.addEventListener('click', e => {
+  lists = lists.filter(list => list.id !== selectedListId)
+  selectedListId = null
+  saveAndRender()
+})
+
 function render() {
   clearElement(listsContainer)
-  renderLists()
-
+ 
+  renderList()
   const selectedList = lists.find(list => list.id === selectedListId)
   if (selectedListId == null) {
     listDisplayContainer.style.display = 'none'
   } else {
     listDisplayContainer.style.display = ''
-    listTitleElement.innerText = selectedList.name
-    renderTaskCount(selectedList)
-    clearElement(tasksContainer)
-    renderTasks(selectedList)
+    listTitle.innerText = selectedList.name
+    
   }
 }
 
 function renderTasks(selectedList) {
   selectedList.tasks.forEach(task => {
-    const taskElement = document.importNode(taskTemplate.content, true)
-    const checkbox = taskElement.querySelector('input')
-    checkbox.id = task.id
-    checkbox.checked = task.complete
-    const label = taskElement.querySelector('label')
-    label.htmlFor = task.id
-    label.append(task.name)
-    tasksContainer.appendChild(taskElement)
+    addHabit(event)
   })
 }
 
-function renderTaskCount(selectedList) {
-  const incompleteTaskCount = selectedList.tasks.filter(task => !task.complete).length
-  const taskString = incompleteTaskCount === 1 ? "task" : "tasks"
-  listCountElement.innerText = `${incompleteTaskCount} ${taskString} remaining`
-}
-
-function renderLists() {
+function renderList(){
+  clearElement(listsContainer)//what we want to clear
   lists.forEach(list => {
-    const listElement = document.createElement('li')
+    const listElement = document.createElement('li')//create a li
     listElement.dataset.listId = list.id
-    listElement.classList.add("list-name")
-    listElement.innerText = list.name
+    listElement.classList.add('list-name')//add a class to it
+    listElement.innerText = list.name//set the name, text inside of it
     if (list.id === selectedListId) {
       listElement.classList.add('active-list')
     }
-    listsContainer.appendChild(listElement)
+  
+    listsContainer.appendChild(listElement)//append to the listcontainer
   })
 }
 
 function clearElement(element) {
-  while (element.firstChild) {
+  while(element.firstChild){// if the element has a first  hild, remove
     element.removeChild(element.firstChild)
   }
 }
 
-render()
 
+render()// everytime render is called, clear items
 
