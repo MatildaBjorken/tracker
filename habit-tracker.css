@@ -1,9 +1,7 @@
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
 }
 
 html {
@@ -12,7 +10,6 @@ html {
     display: flex;
     font-family: 'Quicksand', sans-serif;
     font-size: 1rem;
-    
 }
 
 .removeBtn {
@@ -24,55 +21,45 @@ html {
     align-items: center;
     font-size: 1.5rem;
     text-transform: uppercase;
-    
 }
 
-header,form {
+header,
+form {
     min-height: 20vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-
-
 .table {
-    margin-left:auto; 
-    margin-right:auto;
+    margin-left: auto;
+    margin-right: auto;
     text-transform: uppercase;
     color: rgb(180, 177, 177);
-     
     border-bottom: .2em solid gray;
     table-layout: fixed;
     width: 50%;
     border-collapse: collapse;
-    
-    
 }
+
 #week {
     color: rgb(71, 245, 184);
     font-size: 1rem;
     transform: translateX(80%);
-   
 }
 
 .table td {
-  
     display: inline-block;
     width: 10%;
-  
     padding-bottom: 1em;
-
 }
 
 .table .table-habit {
     padding-bottom: 1em;
-    
     font-size: 1.2rem;
 }
 
-
-.addBtn{
+.addBtn {
     background-color: #8f8f8f;
     border: none;
     color: white;
@@ -81,12 +68,12 @@ header,form {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-   
     font-size: 1rem;
     margin: 1em;
     cursor: pointer;
 }
-.clear-all{
+
+.clear-all {
     background-color: #8f8f8f;
     border: none;
     color: white;
@@ -95,71 +82,80 @@ header,form {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-   
     font-size: 1rem;
     margin: 1em;
     cursor: pointer;
-  }
+}
 
 .input {
     margin-top: 3em;
     width: 40%;
     align-items: center;
     justify-content: center;
-
 }
-.habit-input, .addBtn, .clear-all {
+
+.habit-input,
+.addBtn,
+.clear-all {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-   
-    
 }
-.habit-item{
+
+.habit-item {
     max-width: 60px;
     hyphens: auto;
-    word-wrap:break-word;  
+    word-wrap: break-word;
     align-items: center;
     justify-content: center;
     color: rgb(255, 255, 255);
 }
-.habit-input{
-  
+
+.habit-input {
     hyphens: auto;
-    word-wrap:break-word;
+    word-wrap: break-word;
     align-items: center;
     justify-content: center;
-  width: 60%;
-  border: 0;
-  border-bottom: .2em solid gray;
-  outline: 0;
-  font-size: 1.1rem;
-  padding: .5em 0;
-  background: transparent;
-  color: rgb(255, 255, 255);
-  
+    width: 60%;
+    border: 0;
+    border-bottom: .2em solid gray;
+    outline: 0;
+    font-size: 1.1rem;
+    padding: .5em 0;
+    background: transparent;
+    color: rgb(255, 255, 255);
 }
 
-:placeholder-shown{
-    font-family: 'Quicksand', sans-serif;
+.habit-task {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
 
+.color-box {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+:placeholder-shown {
+    font-family: 'Quicksand', sans-serif;
 }
 
 input::placeholder {
     color: rgb(53, 53, 53);
-  }
+}
 
-
-.check{
+.check {
     margin: 2em;
 }
 
-.trash-btn{
+.trash-btn {
     display: inline-flex;
     background-color: rgba(255, 255, 255, 0);
     border: none;
     color: rgb(125, 125, 125);
-    
     text-align: center;
     text-decoration: none;
     font-size: 1.5rem;
@@ -169,57 +165,44 @@ input::placeholder {
 
 .table-check {
     float: left;
-   transform: translate(8%);
+    transform: translate(8%);
 }
 
 .items {
     display: flex;
     justify-content: center;
     align-items: center;
-   
 }
-
-
 
 .habits {
     display: flex;
     align-items: center;
-    
     justify-content: space-between;
 }
 
-
-.hidden{
+.hidden {
     display: none;
 }
 
-.check:hover{
+.check:hover {
     scale: 1em;
-   
 }
-
-
 
 .check {
     width: 2.5em;
     height: 2.5em;
     border-radius: 50%;
     border: none;
- 
-    
-  
 }
 
 .habit-item {
     list-style: none;
-  align-items: center;
-  justify-content: center;
- 
-  
+    align-items: center;
+    justify-content: center;
 }
 
 .counting {
-   margin-left: 3em;
+    margin-left: 3em;
 }
 
 #condition {
@@ -230,26 +213,19 @@ input::placeholder {
     top: 10%;
     left: 50%;
     transform: translate(-50%, -50%);
-    }
+}
 
-  .check {
-      cursor: pointer;
-      background-color: rgba(234, 234, 234, 0);
-      border: .2em solid gray;
-  }
+.check {
+    cursor: pointer;
+    background-color: rgba(234, 234, 234, 0);
+    border: .2em solid gray;
+}
 
+.c {
+    background-color: gray;
+    cursor: pointer;
+}
 
-  .c {
-      background-color:gray;
-      cursor: pointer;
-   
-  }
-
-
-  .d{
+.d {
     background-color: teal;
-   
-  }
-
-
-
+}

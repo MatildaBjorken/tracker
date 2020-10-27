@@ -3,40 +3,56 @@
 
 
 // target from html
-const addBtn = document.querySelector('.addBtn');
-const habitInput = document.querySelector('.habit-input');
-const habitList = document.querySelector('.habit-list');
-const errorEmpty = document.querySelector('.error');
-const newWeek = document.querySelector('.btn');
-const clearAll = document.querySelector('.clear-all');
-const condition = document.querySelector("#condition");
+const addBtn = document.querySelector('.addBtn')
+const addColor = document.querySelector('.btn-color')
+const habitInput = document.querySelector('.habit-input')
+const habitList = document.querySelector('.habit-list')
+const errorEmpty = document.querySelector('.error')
+const newWeek = document.querySelector('.btn')
+const clearAll = document.querySelector('.clear-all')
+const condition = document.querySelector("#condition")
+    //const checkBox = document.querySelector(".check")
 
-
-const changeBtn = document.querySelector('.items');
+const changeBtn = document.querySelector('.items')
 
 
 //local storage
-document.addEventListener('DOMContentLoaded', getHabits);
-//event listeners
-
-addBtn.addEventListener('click', addHabit);
-habitList.addEventListener('click', deleteAction);
-changeBtn.addEventListener('click', colorChange);
-clearAll.addEventListener('click', removeAll);
+document.addEventListener('DOMContentLoaded', getHabits)
+    //event listeners
+    //checkBox.addEventListener('click', addColorCheck)
+addColor.addEventListener('click', addColorInput)
+addBtn.addEventListener('click', addHabit)
+habitList.addEventListener('click', deleteAction)
+changeBtn.addEventListener('click', colorChange)
+clearAll.addEventListener('click', removeAll)
 
 //remove all btn
+function addColorCheck(e) {
+
+    if (document.querySelector(".check").value) {
+        console.log('bedew');
+    }
+}
 
 function removeAll(e) {
-    location.reload();
-    localStorage.clear()
-        /*const item = e.target
-        const removeBtn = document.querySelector('.items')
-        const habit = item.parentElement
+    const item = e.target
+    const removeBtn = document.querySelector('.items')
+    const habit = item.parentElement
 
-        removeAllHabits(habit)
+    removeAllHabits(habit)
 
-        removeBtn.innerHTML = '';
-        // Clear items on local storage array */
+    removeBtn.innerHTML = '';
+    // Clear items on local storage array
+
+}
+
+function addColorInput(e) {
+
+
+    document.getElementById('habit-input').style.color = document.getElementById('favcolor').value;
+
+    // document.getElementById('sectionText').style.color = document.getElementById('favcolor').value;
+
 }
 
 //hit enter insead of add btn
@@ -45,6 +61,7 @@ document.addEventListener('keypress', function(enter) {
         addHabit(event)
     };
 });
+
 
 //function for changing color of the habits
 
@@ -63,6 +80,7 @@ function colorChange(x) {
         const color = button
         color.classList.remove('c')
     }
+
 }
 
 //function for adding habits
@@ -79,6 +97,7 @@ function addHabit(event) {
         errorEmpty.classList.add('hidden')
             //create a habit div
 
+
         const habitDiv = document.createElement('div')
         habitDiv.classList.add('habits')
 
@@ -91,6 +110,7 @@ function addHabit(event) {
         //create li
         const newHabit = document.createElement('li')
         newHabit.innerText = habitInput.value
+        newHabit.style.color = document.getElementById('favcolor').value;
         newHabit.classList.add('habit-item')
         habitDiv.appendChild(newHabit)
 
@@ -113,18 +133,29 @@ function addHabit(event) {
             '<div class= "selected"><button class="check"></button><button class="check"></button><button class="check"></button><button class="check"></button><button class="check"></button><button class="check"></button><button class="check"></button></div>'
 
         checkHabit.classList.add('table-check')
+            // checkHabit.div.button.style.backgroundColor = color_value;
+        let color_value = document.getElementById('favcolor').value;
+        //checkHabit.style.backgroundColor = color_value;
+        // checkHabit.style.border = '.2em solid' + color_value;
+
+
 
         habitDiv.appendChild(checkHabit)
 
         //append to list
 
         habitList.appendChild(habitDiv)
+
+
     }
 
     //to clear the input after adding
     habitInput.value = ''
     condition.textContent = "there u go!"
+
 }
+
+
 
 //remove btn
 function deleteAction(e) {
@@ -137,6 +168,8 @@ function deleteAction(e) {
         habit.remove()
         removeLocalHabits(habit);
     }
+
+
 }
 
 //set count
@@ -172,14 +205,14 @@ function getHabits() {
     //loop over them
     habits.forEach(function(habit) {
         //if the field is empty
-        /*if (habitInput.value === '') {
+        if (habitInput.value === '') {
             errorEmpty.classList.remove('hidden')
 
         } else {
 
         }
         errorEmpty.classList.add('hidden')
-            //create a habit div*/
+            //create a habit div
 
         const habitDiv = document.createElement('div')
         habitDiv.classList.add('habits')
@@ -196,20 +229,20 @@ function getHabits() {
         newHabit.classList.add('habit-item')
         habitDiv.appendChild(newHabit)
 
-        /*//checkboxes adding using inner HTML
+        //checkboxes adding using inner HTML
         const checkHabit = document.createElement('row')
         checkHabit.innerHTML =
             '<div class= "selected"><button class="check"></button><button class="check"></button><button class="check"></button><button class="check"></button><button class="check"></button><button class="check"></button><button class="check"></button></div>'
 
         checkHabit.classList.add('table-check')
-        habitDiv.appendChild(checkHabit)*/
+        habitDiv.appendChild(checkHabit)
 
         //append to list
         habitList.appendChild(habitDiv)
     });
 }
 
-/*function saveButtons(habit) {
+function saveButtons(habit) {
     let habits;
     if (localStorage.getItem('habits') === null) {
         habits = [];
@@ -220,7 +253,8 @@ function getHabits() {
     const habitIndex = (habit.classList[0] === 'check'.innerText)
         //habits.classList(habits.indexOf(habitIndex) ,1);
     localStorage.setItem('habits', JSON.stringify(habits));
-}*/
+
+}
 /*
 function colorChange(x) {
  
@@ -265,8 +299,10 @@ function removeAllHabits(habit) {
 
 }
 
+
 //get week
 const weekElement = document.getElementById('week')
+
 
 function getWeekNumber(d) {
 
@@ -280,5 +316,7 @@ function getWeekNumber(d) {
 }
 
 var result = getWeekNumber(new Date());
+
+
 
 weekElement.innerHTML = 'week ' + result[1] + ' of ' + result[0]

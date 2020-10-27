@@ -7,8 +7,6 @@
     <link rel="stylesheet" href="/habit-tracker.css">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
 
-
-
 </head>
 
 <body>
@@ -90,14 +88,17 @@
 
         <form action="">
             <div class='input'>
-                <input type="text" name='habit-input' class="habit-input" placeholder="habits..">
+                <div class="habit-task">
+                    <input type="text" id='habit-input' me='habit-input' class="habit-input" placeholder="habits..">
+                    <button type='button' class="addBtn">add</button>
+                    <input type="reset" value="Clear All" class=' clear-all ' />
+                </div>
+                <div class="color-box ">
+                    <button type='button' id="btn-color " class="btn-color ">AddColor</button>
+                    <p>Pick Color:
+                        <input type="color" id="favcolor" name="favcolor" value="#ff0000" /> </p>
+                </div>
 
-                <button type='button' class="addBtn">add</button>
-
-
-
-
-                <input type="reset" value="Clear All" class='clear-all'>
                 <!--counter
           <div class="counter-box">
        
@@ -112,7 +113,7 @@
             </div>
 
     </div>
-    <div class='error hidden'>We both know you should be doing something right now. Please enter a task.</div>
+    <div class='error hidden '>We both know you should be doing something right now. Please enter a task.</div>
 
     <h4 id="week">
         </h5>
@@ -126,6 +127,6 @@
 
 </body>
 
-<script src='habit-tracker.js'></script>
+<script src='habit-tracker.js '></script>
 
 </html>
