@@ -25,6 +25,7 @@ html {
     align-items: center;
     font-size: 1.5rem;
     text-transform: uppercase;
+    color: gray;
     
 }
 
@@ -58,6 +59,8 @@ header,form {
 #week {
     color: rgb(132, 132, 132);
     font-size: 1rem;
+    margin: 2em;
+    
     
     
 }
@@ -129,6 +132,7 @@ header,form {
     
 }
 .habit-item{
+  margin-right: 5em;
     max-width: 60px;
     hyphens: auto;
     word-wrap:break-word;  
@@ -155,8 +159,7 @@ header,form {
 
 .weeks{
 
-  
-    width: 20%;
+    width: 18.5%;
    
 }
 
@@ -217,9 +220,13 @@ input::placeholder {
     
     text-align: center;
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 1.9rem;
     margin: .5em;
     cursor: pointer;
+}
+
+.trash-btn:hover {
+  color: rgb(255, 255, 255);
 }
 
 .table-check {
@@ -234,7 +241,9 @@ input::placeholder {
    
 }
 
-
+.trash-btn, .habit-item {
+  justify-content: space-between;
+}
 
 .habits {
     display: flex;
@@ -243,14 +252,15 @@ input::placeholder {
     justify-content: space-between;
 }
 
+
 .hidden{
     display: none;
 }
 
-
 .error {
+  margin-left: 35em;
     font-size: 0.8rem;
-    color: rgb(208, 208, 208);
+    color: grey;
 }
 
 .check:hover{
@@ -285,8 +295,8 @@ input::placeholder {
     color: #858585;
     font-size: 12px;
     position: absolute;
-    top: 10%;
-    left: 50%;
+    top: 20%;
+    left: 73%;
     transform: translate(-50%, -50%);
     }
 
@@ -312,20 +322,16 @@ input::placeholder {
 
 
   .selected {
-      
+    
   }
 
 
-  .active-list:hover {
-      color: rgb(143, 143, 143);
-      
-  }
+ 
 
-  .active-list:active {
-      scale: 2;
-  }
+
 
 .active-list {
+  color: rgb(143, 143, 143);
     font-size: 1.2rem;
     font-weight: 900;
     list-style: none;
@@ -362,7 +368,12 @@ input::placeholder {
     
 }
 
+.inputDiv {
+  margin-top: -4em;
+}
+
 .all-tasks {
+  margin-top: -3.5em;
     margin-left: 2em;
     list-style: none;
 }
@@ -376,6 +387,10 @@ input::placeholder {
     height: 2.5em;
     border-radius: 50%;
     border: none;
+    margin: 2em;
+    cursor: pointer;
+    background-color: transparent;
+    border: .2em solid gray;
   }
 
   @-webkit-keyframes backgroundAnimate {
@@ -475,6 +490,14 @@ input::placeholder {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
+.circle {
+  width: 2.5em;
+  height: 2.5em;
+}
 
 
-button {}
+.task-list-title {
+  text-transform: uppercase;
+  margin-bottom: 1em;
+}
+
