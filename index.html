@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="style.css" rel="stylesheet">
+    
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1 id="title">
+        Habit Tracker
+      </h1>
+    </header>
+    
+
+    <div class="inputDiv">
+        <table>
+          <thead>
+            <tr>
+              <td>Action</td>
+              <td>Habit Name</td>
+              <td>S</td>
+              <td>M</td>
+              <td>T</td>
+              <td>W</td>
+              <td>T</td>
+              <td>F</td>
+              <td>S</td>
+            </tr>
+          </thead>
+          <tbody id="habit-list">
+          </tbody>
+            
+        </table>
+
+        <div class='footer'>
+          <form>
+            <div class="form-group">
+              <label>Habit Name</label>
+              <input type="text" name='habit-name' id="habit-name" class="form-control" placeholder="Habit Name">
+            </div>
+            <div class="form-group">
+              <label>Habit Color</label>
+              <input type="color" name='habit-color' id="habit-color" class="form-control">
+            </div>
+            <div class="form-group">
+              <button type="button" class="addBtn">add</button>
+            </div>
+          </form>
+
+        </div>  
+  </div>
+    
+    
+</body>
+
+<script src='habit-tracker.js'></script>
+
+</html>
